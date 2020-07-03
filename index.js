@@ -1,15 +1,11 @@
-// const prompt = require('prompt-sync')({ sigint: true })
-const { dataReader } = require("./src/utils");
-// const filePath = prompt("Path to input file: ")
+const { fileReader } = require("./src/file-reader");
+const ProcessSoccerData = require("./src/process-soccer-data");
 
-const filePath = "sample-input.txt";
+// get filepath from argument or default to sample-input.txt
+let filePath = process.argv[2] || "sample-input.txt";
 
-class ProcessSoccerData {
-  process(data) {
-    console.log(data);
-  }
-}
-
+// instantiate ProcessSoccerData class, this is created here in
+// order to inject the process dependency into fileReader
 const mainProcess = new ProcessSoccerData();
 
 const options = {
@@ -17,4 +13,4 @@ const options = {
   mainProcess,
 };
 
-dataReader(options);
+fileReader(options);

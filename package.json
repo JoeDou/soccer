@@ -11,9 +11,6 @@
   },
   "author": "Joe Dou",
   "license": "ISC",
-  "dependencies": {
-    "prompt-sync": "^4.2.0"
-  },
   "devDependencies": {
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",

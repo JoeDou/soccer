@@ -1,20 +1,31 @@
-const fs = require("fs");
-const readline = require("readline");
+function parser(str) {
+  const parsedData = str.match(/[a-zA-Z ]+|[0-9]+/g);
 
-async function dataReader({ filePath, mainProcess }) {
-  const fileStream = fs.createReadStream(filePath);
+  return {
+    teamName1: parsedData[0].trim(),
+    score1: parseInt(parsedData[1]),
+    teamName2: parsedData[2].trim(),
+    score2: parseInt(parsedData[3]),
+  };
+}
 
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
+function logger(data) {
+  console.log(`Matchday ${data.matchDay}`);
+  data.teams.forEach((team) => {
+    console.log(`${team[0]}, ${team[1]} pts`);
   });
+  console.log("");
+}
 
-  for await (const line of rl) {
-    mainProcess.process(line);
+function comparator(a, b) {
+  if (a[1] === b[1]) {
+    return a[0].localeCompare(b[0]);
   }
-  console.log("done");
+  return b[1] - a[1];
 }
 
 module.exports = {
-  dataReader: dataReader,
+  comparator,
+  logger,
+  parser,
 };

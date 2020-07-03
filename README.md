@@ -1,3 +1,27 @@
+## How to install
+```npm install```
+
+## How to run
+<code>npm run start *filepath*</code>
+
+example: <code>npm run start ./testinput.txt</code>
+
+without filepath it will default to sample-input.txt
+
+## How to run test
+```npm run test```
+
+## Design considerations
+- To calculate the top 3 teams, I went with sorting an array solution because the
+data set was small.  However, if the number of unique teams is way larger, say in the
+hundreds of thousands or even millions, then the better solution will be using a min
+heap.
+
+- The code generally assumes go path and clean data, so there isn't much error checking
+or validation
+ 
+
+---
 ## The Problem
 
 We want you to create a command-line application that reads a listing of game
